@@ -96,7 +96,8 @@ class Data:
         test_data_path = data_path.replace('train', 'test')
 
         test_dataset = DataPreparation(root=args, 
-                                      data_path=test_data_path)
+                                      data_path=test_data_path,
+                                      transform=transform)
         
         self.loader_test = DataLoader(
             test_dataset, batch_size=args.train_batch_size, shuffle=False, 
