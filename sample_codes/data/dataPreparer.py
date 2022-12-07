@@ -11,6 +11,7 @@ from torchvision.io import read_image
 import os
 from utils.options import args
 from PIL import Image
+import random
 
 class DataPreparation(Dataset):
     def __init__(self, root=args, data_path=None, label_path=None,
@@ -61,6 +62,14 @@ class Data:
         
 
         transform = transforms.Compose([
+            random.choice([transforms.RandomRotation(60), 
+            transforms.RandomHorizontalFlip(p=1.0),
+            transforms.RandomPerspective(p=1.0)
+                   #transforms.RandomAdjustSharpness(sharpness_factor=0, p=1.0),
+                   #transforms.CenterCrop(90)
+                   #transforms.GaussianBlur(kernel_size=11)
+                  ]),
+            
             transforms.Resize((28, 28)), 
             transforms.ToTensor(),
             transforms.Normalize(mean=(0.5), std=(0.5))
