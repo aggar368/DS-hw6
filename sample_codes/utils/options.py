@@ -40,9 +40,9 @@ parser.add_argument('--eval_batch_size', type = int, default = 32, help = 'Batch
 parser.add_argument('--momentum', type = float, default = 0.9, help = 'Momentum for MomentumOptimizer.')
 parser.add_argument('--lr', type = float, default = 0.005) #
 parser.add_argument('--lr_gamma', type = float, default = 0.1)
-parser.add_argument('--lr_decay_step', type = int, default = 30)
+parser.add_argument('--lr_decay_step', type = int, default = 40)
 
-parser.add_argument('--weight_decay', type = float, default = 1e-4, help = 'The weight decay of loss.')
+parser.add_argument('--weight_decay', type = float, default = 5e-5, help = 'The weight decay of loss.')
 
 
 ## Status
