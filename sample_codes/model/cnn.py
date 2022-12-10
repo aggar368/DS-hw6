@@ -36,6 +36,8 @@ class CNN(nn.Module):
         self.smax = nn.Softmax(dim=0)
         self.fc2 = nn.Linear(256, num_classes)
 
+        self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
+
         for m in self.modules():
             if isinstance(m, nn.Conv2d):
                 nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
@@ -63,6 +65,7 @@ class CNN(nn.Module):
         x = self.maxpool2(x)
         x = self.dropout2(x)
         
+        x = self.avgpool(x)
         feature = torch.flatten(x, 1)
         x = self.fc1(feature)
         x = self.relu(x)
