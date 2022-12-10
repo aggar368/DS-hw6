@@ -38,7 +38,7 @@ parser.add_argument('--train_batch_size', type = int, default = 64, help = 'Batc
 parser.add_argument('--eval_batch_size', type = int, default = 64, help = 'Batch size for validation.')
 
 parser.add_argument('--momentum', type = float, default = 0.9, help = 'Momentum for MomentumOptimizer.')
-parser.add_argument('--lr', type = float, default = 0.0001) #
+parser.add_argument('--lr', type = float, default = 0.005) #
 parser.add_argument('--lr_gamma', type = float, default = 0.1)
 parser.add_argument('--lr_decay_step', type = int, default = 40)
 
