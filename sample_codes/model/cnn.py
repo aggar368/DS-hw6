@@ -43,7 +43,6 @@ class CNN(nn.Module):
         x = self.dropout1(x)
 
         feature = torch.flatten(x, 1)
-        print(feature.shape)
         x = F.relu(self.fc1(feature))
 
         x = self.dropout2(x)
