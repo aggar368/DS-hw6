@@ -15,7 +15,7 @@ parser.add_argument('--output_file', type = str, default = 'experiment/train/out
 
 parser.add_argument('--job_dir', type = str, default = 'experiment/train/', help = 'The directory where the summaries will be stored.') # 'experiments/'
 
-parser.add_argument('--pretrained', action = 'store_true', default = False, help = 'Load pretrained model')
+parser.add_argument('--pretrained', action = 'store_true', default = True, help = 'Load pretrained model')
 parser.add_argument('--inference_only', action = 'store_true', default = False, help = 'Load pretrained model')
 
 parser.add_argument('--source_dir', type = str, default = 'pretrained/', help = 'The directory where the teacher model saved.')
