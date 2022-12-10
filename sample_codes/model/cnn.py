@@ -26,6 +26,8 @@ class CNN(nn.Module):
         self.bn3 = nn.BatchNorm2d(32)
         self.conv4 = nn.Conv2d(32, 16, kernel_size=3, stride=1, padding=1, bias=False)
         self.bn4 = nn.BatchNorm2d(16)
+        self.conv5 = nn.Conv2d(16, 16, kernel_size=3, stride=1, padding=1, bias=False)
+        self.bn5 = nn.BatchNorm2d(16)
         self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
         self.fc = nn.Linear(16, num_classes)
 
@@ -52,6 +54,10 @@ class CNN(nn.Module):
 
         x = self.conv4(x)
         x = self.bn4(x)
+        x = self.relu(x)
+
+        x = self.conv5(x)
+        x = self.bn5(x)
         
 
         x = self.avgpool(x)
