@@ -15,7 +15,7 @@ parser.add_argument('--output_file', type = str, default = 'experiment/train/out
 
 parser.add_argument('--job_dir', type = str, default = 'experiment/train/', help = 'The directory where the summaries will be stored.') # 'experiments/'
 
-parser.add_argument('--pretrained', action = 'store_true', default = True, help = 'Load pretrained model')
+parser.add_argument('--pretrained', action = 'store_true', default = False, help = 'Load pretrained model')
 parser.add_argument('--inference_only', action = 'store_true', default = False, help = 'Load pretrained model')
 
 parser.add_argument('--source_dir', type = str, default = 'pretrained/', help = 'The directory where the teacher model saved.')
@@ -31,7 +31,7 @@ parser.add_argument('--refine', type = str, default = None, help = 'Path to the 
 parser.add_argument('--arch', type = str, default = 'cnn', help = 'Architecture of teacher and student')  # 
 parser.add_argument('--model', type = str, default = 'CNN', help = 'The target model.') # 
 
-parser.add_argument('--num_epochs', type = int, default = 45, help = 'The num of epochs to train.') 
+parser.add_argument('--num_epochs', type = int, default = 1, help = 'The num of epochs to train.') 
 
 
 parser.add_argument('--train_batch_size', type = int, default = 32, help = 'Batch size for training.')
