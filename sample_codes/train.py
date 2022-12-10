@@ -67,11 +67,11 @@ def main():
     
     optimizer = optim.Adam(param, lr = args.lr, betas=(0.9, 0.999), eps=1e-08)
     #optimizer = optim.SGD(param, lr = args.lr, momentum = args.momentum, weight_decay = args.weight_decay)
-    scheduler = StepLR(optimizer, args.lr_decay_step, gamma = args.lr_gamma)
+    #scheduler = StepLR(optimizer, args.lr_decay_step, gamma = args.lr_gamma)
 
 
     for epoch in range(start_epoch, args.num_epochs):
-        scheduler.step(epoch)
+        #scheduler.step(epoch)
         
         train(args, data_loader, model, optimizer, epoch)
         
@@ -86,7 +86,7 @@ def main():
             
             'optimizer': optimizer.state_dict(),
             
-            'scheduler': scheduler.state_dict(),
+            #'scheduler': scheduler.state_dict(),
             
             'epoch': epoch + 1
         }
