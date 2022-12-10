@@ -33,7 +33,6 @@ class CNN(nn.Module):
         
         self.fc1 = nn.Linear(64, 256)
         
-        self.smax = nn.Softmax(dim=0)
         self.fc2 = nn.Linear(256, num_classes)
 
         self.avgpool = nn.AdaptiveAvgPool2d((1, 1))
@@ -72,7 +71,6 @@ class CNN(nn.Module):
 
         x = self.dropout3(x)
         x = self.fc2(x)
-        x = self.smax(x)
         
         return x
 
