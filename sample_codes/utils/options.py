@@ -31,7 +31,7 @@ parser.add_argument('--refine', type = str, default = None, help = 'Path to the 
 parser.add_argument('--arch', type = str, default = 'cnn', help = 'Architecture of teacher and student')  # 
 parser.add_argument('--model', type = str, default = 'CNN', help = 'The target model.') # 
 
-parser.add_argument('--num_epochs', type = int, default = 40, help = 'The num of epochs to train.') 
+parser.add_argument('--num_epochs', type = int, default = 45, help = 'The num of epochs to train.') 
 
 
 parser.add_argument('--train_batch_size', type = int, default = 32, help = 'Batch size for training.')
@@ -42,7 +42,7 @@ parser.add_argument('--lr', type = float, default = 0.005) #
 parser.add_argument('--lr_gamma', type = float, default = 0.1)
 parser.add_argument('--lr_decay_step', type = int, default = 40)
 
-parser.add_argument('--weight_decay', type = float, default = 5e-5, help = 'The weight decay of loss.')
+parser.add_argument('--weight_decay', type = float, default = 6e-5, help = 'The weight decay of loss.')
 
 
 ## Status
