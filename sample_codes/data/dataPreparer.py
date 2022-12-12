@@ -62,13 +62,13 @@ class Data:
         
 
         transform = transforms.Compose([
-            random.choice([transforms.RandomRotation(15), 
+            transforms.RandomRotation(20), 
             #transforms.RandomHorizontalFlip(p=1.0),
             #transforms.RandomPerspective(p=1.0)
                    #transforms.RandomAdjustSharpness(sharpness_factor=0, p=1.0),
-                   transforms.CenterCrop(28)
+            transforms.RandomShift(3),
                    #transforms.GaussianBlur(kernel_size=11)
-                  ]),
+                  
             
             transforms.Resize((28, 28)), 
             transforms.ToTensor(),
