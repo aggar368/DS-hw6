@@ -21,7 +21,7 @@ class CNN(nn.Module):
         self.relu = nn.ReLU(inplace=True)
         self.conv2 = nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1, bias=False)
         self.dropout1 = nn.Dropout(0.25)
-        self.dropout2 = nn.Dropout(0.5)
+        self.dropout2 = nn.Dropout(0.3)
         self.fc1 = nn.Linear(12544, 128)
         self.fc2 = nn.Linear(128, num_classes)
 
