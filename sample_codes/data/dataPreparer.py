@@ -57,6 +57,26 @@ class DataPreparation(Dataset):
             self.file_labels = pd.read_csv(label_path)
         
 
+class RandomShift(object):
+    def __init__(self, shift):
+        self.shift = shift
+        
+    @staticmethod
+    def get_params(shift):
+        """Get parameters for ``rotate`` for a random rotation.
+        Returns:
+            sequence: params to be passed to ``rotate`` for random rotation.
+        """
+        hshift, vshift = np.random.uniform(-shift, shift, size=2)
+
+        return hshift, vshift 
+    def __call__(self, img):
+        hshift, vshift = self.get_params(self.shift)
+        
+        return img.transform(img.size, Image.AFFINE, (1,0,hshift,0,1,vshift), resample=Image.BICUBIC, fill=1)
+
+
+
 class Data:
     def __init__(self, args, data_path, label_path):
         
@@ -66,7 +86,7 @@ class Data:
             #transforms.RandomHorizontalFlip(p=1.0),
             #transforms.RandomPerspective(p=1.0)
                    #transforms.RandomAdjustSharpness(sharpness_factor=0, p=1.0),
-            transforms.RandomShift(3),
+            RandomShift(3),
                    #transforms.GaussianBlur(kernel_size=11)
                   
             
