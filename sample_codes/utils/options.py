@@ -31,7 +31,7 @@ parser.add_argument('--refine', type = str, default = None, help = 'Path to the 
 parser.add_argument('--arch', type = str, default = 'cnn', help = 'Architecture of teacher and student')  # 
 parser.add_argument('--model', type = str, default = 'CNN', help = 'The target model.') # 
 
-parser.add_argument('--num_epochs', type = int, default = 45, help = 'The num of epochs to train.') 
+parser.add_argument('--num_epochs', type = int, default = 50, help = 'The num of epochs to train.') 
 
 
 parser.add_argument('--train_batch_size', type = int, default = 32, help = 'Batch size for training.')
