@@ -63,10 +63,10 @@ class Data:
 
         transform = transforms.Compose([
             random.choice([transforms.RandomRotation(60), 
-            transforms.RandomHorizontalFlip(p=1.0),
-            transforms.RandomPerspective(p=1.0)
+            #transforms.RandomHorizontalFlip(p=1.0),
+            #transforms.RandomPerspective(p=1.0)
                    #transforms.RandomAdjustSharpness(sharpness_factor=0, p=1.0),
-                   #transforms.CenterCrop(90)
+                   transforms.CenterCrop(28)
                    #transforms.GaussianBlur(kernel_size=11)
                   ]),
             
