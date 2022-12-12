@@ -22,7 +22,7 @@ class CNN(nn.Module):
         self.conv2 = nn.Conv2d(20, 50, kernel_size=3, stride=1, padding=1, bias=False)
         self.dropout1 = nn.Dropout(0.25)
         self.dropout2 = nn.Dropout(0.5)
-        self.fc1 = nn.Linear(12544, 128)
+        self.fc1 = nn.Linear(9800, 128)
         self.fc2 = nn.Linear(128, num_classes)
 
         for m in self.modules():
@@ -43,7 +43,7 @@ class CNN(nn.Module):
         x = self.dropout1(x)
 
         feature = torch.flatten(x, 1)
-        print(feature.shape)
+        #print(feature.shape)
         x = F.relu(self.fc1(feature))
 
         x = self.dropout2(x)
