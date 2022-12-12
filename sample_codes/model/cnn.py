@@ -17,9 +17,9 @@ class CNN(nn.Module):
         super(CNN, self).__init__()
         
      
-        self.conv1 = nn.Conv2d(3, 32, kernel_size=3, stride=1, padding=1, bias=False)
+        self.conv1 = nn.Conv2d(3, 20, kernel_size=3, stride=1, padding=1, bias=False)
         self.relu = nn.ReLU(inplace=True)
-        self.conv2 = nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1, bias=False)
+        self.conv2 = nn.Conv2d(20, 50, kernel_size=3, stride=1, padding=1, bias=False)
         self.dropout1 = nn.Dropout(0.25)
         self.dropout2 = nn.Dropout(0.5)
         self.fc1 = nn.Linear(12544, 128)
@@ -43,6 +43,7 @@ class CNN(nn.Module):
         x = self.dropout1(x)
 
         feature = torch.flatten(x, 1)
+        print(feature.shape)
         x = F.relu(self.fc1(feature))
 
         x = self.dropout2(x)
