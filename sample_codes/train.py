@@ -65,8 +65,8 @@ def main():
 
     param = [param for name, param in model.named_parameters()]
     
-    #optimizer = optim.Adam(param, lr = args.lr)
-    optimizer = optim.SGD(param, lr = args.lr, momentum = args.momentum, weight_decay = args.weight_decay)
+    optimizer = optim.Adam(param, lr = args.lr)
+    #optimizer = optim.SGD(param, lr = args.lr, momentum = args.momentum, weight_decay = args.weight_decay)
     scheduler = StepLR(optimizer, args.lr_decay_step, gamma = args.lr_gamma)
 
 
