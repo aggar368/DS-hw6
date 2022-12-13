@@ -42,7 +42,7 @@ parser.add_argument('--lr', type = float, default = 0.003) #
 parser.add_argument('--lr_gamma', type = float, default = 0.1)
 parser.add_argument('--lr_decay_step', type = int, default = 7)
 
-parser.add_argument('--weight_decay', type = float, default = 5e-5, help = 'The weight decay of loss.')
+parser.add_argument('--weight_decay', type = float, default = 6e-5, help = 'The weight decay of loss.')
 
 
 ## Status
