@@ -36,16 +36,16 @@ class CNN(nn.Module):
         )
           
         self.classifier = nn.Sequential(
-            nn.Dropout(p = 0.6),
+            nn.Dropout(p = 0.5),
             nn.Linear(64 * 7 * 7, 512),
             nn.BatchNorm1d(512),
             nn.ReLU(inplace=True),
-            nn.Dropout(p = 0.6),
-            nn.Linear(512, 512),
-            nn.BatchNorm1d(512),
+            nn.Dropout(p = 0.5),
+            nn.Linear(512, 256),
+            nn.BatchNorm1d(256),
             nn.ReLU(inplace=True),
             nn.Dropout(p = 0.5),
-            nn.Linear(512, num_classes),
+            nn.Linear(256, num_classes),
         )
 
         for m in self.features.children():
