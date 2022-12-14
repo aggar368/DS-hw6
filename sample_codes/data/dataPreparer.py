@@ -45,7 +45,7 @@ class DataPreparation(Dataset):
     def __getitem__(self, idx):
         data_file = self.data_files[idx]
         fig_number = int(data_file[:5])
-        if fig_number > 45000:
+        if fig_number > 45000 and self.extra_path is not None:
             img_path = os.path.join(self.extra_path, data_file)
         else:
             img_path = os.path.join(self.data_path, data_file)
