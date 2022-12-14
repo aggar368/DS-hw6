@@ -34,8 +34,8 @@ parser.add_argument('--model', type = str, default = 'CNN', help = 'The target m
 parser.add_argument('--num_epochs', type = int, default = 50, help = 'The num of epochs to train.') 
 
 
-parser.add_argument('--train_batch_size', type = int, default = 32, help = 'Batch size for training.')
-parser.add_argument('--eval_batch_size', type = int, default = 32, help = 'Batch size for validation.')
+parser.add_argument('--train_batch_size', type = int, default = 64, help = 'Batch size for training.')
+parser.add_argument('--eval_batch_size', type = int, default = 64, help = 'Batch size for validation.')
 
 parser.add_argument('--momentum', type = float, default = 0.9, help = 'Momentum for MomentumOptimizer.')
 parser.add_argument('--lr', type = float, default = 0.003) #
