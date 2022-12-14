@@ -44,7 +44,11 @@ class DataPreparation(Dataset):
 
     def __getitem__(self, idx):
         data_file = self.data_files[idx]
-        img_path = os.path.join(self.data_path, data_file)
+        fig_number = int(data_file[:5])
+        if fig_number > 45000:
+            img_path = os.path.join(self.extra_path, data_file)
+        else:
+            img_path = os.path.join(self.data_path, data_file)
         image = Image.open(img_path) # plt.imread(img_path)
  
         if self.transform:
