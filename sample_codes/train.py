@@ -36,7 +36,8 @@ def main():
     
     loader = dataPreparer.Data(args, 
                                data_path=args.src_data_path, 
-                               label_path=args.src_label_path)
+                               label_path=args.src_label_path,
+                               move=args.moved_files)
     
     data_loader = loader.loader_train
     data_loader_valid = loader.loader_valid
