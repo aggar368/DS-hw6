@@ -57,6 +57,7 @@ class DataPreparation(Dataset):
         if self.label_path is None:
             return image, -1, data_file
         
+        print(data_file)
         print(self.file_labels)
         label = self.file_labels['label'][self.file_labels['image_name'] == data_file].iloc[0]
             
