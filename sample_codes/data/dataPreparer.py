@@ -72,6 +72,7 @@ class DataPreparation(Dataset):
     def preprocess(self, data_path, label_path, extra_path, extra_label_path, 
                     extra_num=None, reduced_num=None):
         self.data_files = os.listdir(data_path)
+        self.data_files.sort()
         if reduced_num is not None:   # for valid set
             self.data_files = self.data_files[reduced_num:]
 
@@ -80,7 +81,7 @@ class DataPreparation(Dataset):
             extra.sort()
             self.data_files = self.data_files + extra[:extra_num]
 
-        self.data_files.sort()
+        #self.data_files.sort()
   
         # label-setting part
         if label_path is not None:   # for train&valid set
