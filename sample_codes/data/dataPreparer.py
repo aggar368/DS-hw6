@@ -57,9 +57,11 @@ class DataPreparation(Dataset):
         if self.label_path is None:
             return image, -1, data_file
         
+        """
         print(idx)
         print(data_file)
         print(self.file_labels)
+        """
         label = self.file_labels['label'][self.file_labels['image_name'] == data_file].iloc[0]
             
         if self.target_transform:
@@ -75,6 +77,7 @@ class DataPreparation(Dataset):
 
         if extra_path is not None:   # for train set
             extra = os.listdir(extra_path)
+            extra.sort()
             self.data_files = self.data_files + extra[:extra_num]
 
         self.data_files.sort()
