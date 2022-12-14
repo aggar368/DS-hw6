@@ -86,7 +86,7 @@ def main():
             
             'optimizer': optimizer.state_dict(),
             
-            #'scheduler': scheduler.state_dict(),
+            'scheduler': scheduler.state_dict(),
             
             'epoch': epoch + 1
         }
