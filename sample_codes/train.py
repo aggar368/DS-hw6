@@ -106,9 +106,9 @@ def main():
     print(f'Best acc: {best_acc:.3f}\n')
 
     # plot saved training loss
-    epoch_ind = range(1, 51)
+    epoch_ind = range(1, args.num_epochs+1)
     plt.plot(epoch_ind, loss_lst)
-    plt.show()
+    plt.savefig("loss.png")
 
     # plot confusion matrix
     plot_confusion_matrix(data_loader_valid, model)
@@ -148,7 +148,7 @@ def train(args, data_loader, model, optimizer, epoch):
 
         ## train weights        
         losses.update(loss.item(), inputs.size(0))
-        loss_lst.append(losses.val)
+        
         
         ## evaluate
         prec1, _ = utils.accuracy(output, targets, topk = (1, 5))
@@ -163,6 +163,8 @@ def train(args, data_loader, model, optimizer, epoch):
                 epoch, i, num_iterations, 
                 train_loss = losses,
                 acc = acc))
+
+    loss_lst.append(losses.avg)
                 
       
  
@@ -240,17 +242,16 @@ def plot_confusion_matrix(loader_valid, model):
             _, output = preds.topk(1, 1, True, True)
             y_pred.extend(list(output.reshape(-1).cpu().detach().numpy()))
 
-            _, label = targets.topk(1, 1, True, True)
-            y_true.extend(list(label.reshape(-1).cpu().detach().numpy()))
+            y_true.extend(list(targets.reshape(-1).cpu().detach().numpy()))
     
     classes = ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')
     cf_matrix = confusion_matrix(y_true, y_pred)
-    df_cm = pd.DataFrame(cf_matrix/np.sum(cf_matrix) *10, index = [i for i in classes],
+    df_cm = pd.DataFrame(cf_matrix, index = [i for i in classes],
                      columns = [i for i in classes])
     
     plt.figure()
     sn.heatmap(df_cm, annot=True)
-    plt.show()
+    plt.savefig("confusion_matrix.png")
 
   
 
