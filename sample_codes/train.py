@@ -1,5 +1,6 @@
 import os
 import pandas as pd
+import numpy as np
 
 from utils.options import args
 import utils.common as utils
@@ -13,6 +14,11 @@ import torch.nn.functional as F
 from torch.optim.lr_scheduler import MultiStepLR as MultiStepLR
 from torch.optim.lr_scheduler import StepLR as StepLR
 
+# visualization
+import matplotlib.pyplot as plt
+from sklearn.metrics import confusion_matrix
+import seaborn as sn
+
 from data import dataPreparer
 
 import warnings, math
@@ -23,8 +29,10 @@ device = torch.device(f"cuda:{args.gpus[0]}")
 
 checkpoint = utils.checkpoint(args)
 
+loss_lst = []
 
 def main():
+    global loss_lst
 
     start_epoch = 0
     best_acc = 0.0
@@ -97,10 +105,19 @@ def main():
     
     print(f'Best acc: {best_acc:.3f}\n')
 
+    # plot saved training loss
+    epoch_ind = range(1, 51)
+    plt.plot(epoch_ind, loss_lst)
+    plt.show()
 
-  
-       
+    # plot confusion matrix
+    plot_confusion_matrix(data_loader_valid, model)
+
+
+
 def train(args, data_loader, model, optimizer, epoch):
+    global loss_lst
+
     losses = utils.AverageMeter()
 
     acc = utils.AverageMeter()
@@ -131,6 +148,7 @@ def train(args, data_loader, model, optimizer, epoch):
 
         ## train weights        
         losses.update(loss.item(), inputs.size(0))
+        loss_lst.append(losses.val)
         
         ## evaluate
         prec1, _ = utils.accuracy(output, targets, topk = (1, 5))
@@ -205,6 +223,35 @@ def inference(args, loader_test, model, output_file_name):
     
     output_file = pd.DataFrame.from_dict(output_file)
     output_file.to_csv(output_file_name, index = False)
+
+
+def plot_confusion_matrix(loader_valid, model):
+    y_pred = []
+    y_true = []
+
+    model.eval()
+
+    with torch.no_grad():
+        for i, (inputs, targets, datafile) in enumerate(loader_valid, 1):
+            inputs = inputs.to(device)
+            targets = targets.to(device)
+             
+            preds = model(inputs)
+            _, output = preds.topk(1, 1, True, True)
+            y_pred.extend(list(output.reshape(-1).cpu().detach().numpy()))
+
+            _, label = targets.topk(1, 1, True, True)
+            y_true.extend(list(label.reshape(-1).cpu().detach().numpy()))
+    
+    classes = ('0', '1', '2', '3', '4', '5', '6', '7', '8', '9')
+    cf_matrix = confusion_matrix(y_true, y_pred)
+    df_cm = pd.DataFrame(cf_matrix/np.sum(cf_matrix) *10, index = [i for i in classes],
+                     columns = [i for i in classes])
+    
+    plt.figure()
+    sn.heatmap(df_cm, annot=True)
+    plt.show()
+
   
 
 if __name__ == '__main__':
