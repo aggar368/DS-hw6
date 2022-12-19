@@ -44,7 +44,7 @@ parser.add_argument('--lr_decay_step', type = int, default = 7)
 
 parser.add_argument('--weight_decay', type = float, default = 6e-5, help = 'The weight decay of loss.')
 
-parser.add_argument('--moved_files', type = int, default = 0, help = 'The number of files moved from valid set to train set.')
+parser.add_argument('--moved_files', type = int, default = 6000, help = 'The number of files moved from valid set to train set.')
 
 
 ## Status
